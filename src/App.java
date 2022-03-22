@@ -56,6 +56,6 @@ public class App {
                 chars[i]='#';
             }
         }
-        return String.valueOf(chars).replace("#", "").replace("\\", "").replace("\"", "").replace("rt", "");
+        return String.valueOf(chars).replaceAll("[#,\\,\",rt]", "");
     }
 }
