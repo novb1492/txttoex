@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 public class App {
     public static void main(String[] args) throws Exception {
         String path="/Users/sesisoft/Desktop/txts";
@@ -12,6 +15,7 @@ public class App {
         File dir = new File("/Users/sesisoft/Desktop/txts");
         File files[] = dir.listFiles();
         List<String>texts=new ArrayList<>();
+        boolean flag=false;
         for(File f:files){
             String fileName=f.getName();
             System.out.println(fileName);
@@ -22,16 +26,21 @@ public class App {
                     break;
                 }
                 if(text.contains(">")){
-                    System.out.println(fileName+": "+delete(text));
-                    texts.add(delete(text));
+                    String text2=delete(text);
+                    System.out.println(fileName+": "+text2);
+                    texts.add(text2);
+                    flag=true;
                 }
             }
+            if(flag){
+                XSSFWorkbook xssfWb =  new XSSFWorkbook(); 
+                XSSFSheet xssfSheet = xssfWb.createSheet(fileName);
+                for(String text3:texts){
+                    
+                }
+                flag=false;
+            }
         }
-       
-       
-        //System.out.println(texts.toString());
-
-        File file = new File("/Users/sesisoft/Desktop/txts/1.xls");
        } catch (Exception e) {
            e.printStackTrace();
        }
@@ -50,12 +59,10 @@ public class App {
             }else if((int)c>=97&&(int)c<=112){
                 chars[i]='#';
             }
-           
-            
             if(flag){
                 chars[i]='#';
             }
         }
-        return String.valueOf(chars).replaceAll("[#,\\,\",rt]", "");
+        return String.valueOf(chars).replaceAll("[#,\",rt]", "").replace("\\", "");
     }
 }
