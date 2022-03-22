@@ -19,3 +19,6 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
 
 회사에서 일본어를 txt에서 추출한뒤  
 엑셀로 넣으라고해서 만듬  
+
+var2  
+-다른 양식에 맞게  

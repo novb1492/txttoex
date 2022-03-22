@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.GroupLayout.Alignment;
 
@@ -18,7 +20,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class App {
     public static void main(String[] args) throws Exception {
         String path="/Users/sesisoft/Desktop/txts";
-       try {
+        delete("text");
+      /* try {
         File dir = new File("/Users/sesisoft/Desktop/txts");
         File files[] = dir.listFiles();
         List<String>texts=new ArrayList<>();
@@ -40,7 +43,7 @@ public class App {
                     flag=true;
                 }
             }
-            if(flag){
+            /*if(flag){
                 XSSFWorkbook xssfWb =  new XSSFWorkbook(); 
                 XSSFSheet xssfSheet = xssfWb.createSheet(fileName);
                 XSSFRow xssfRow = xssfSheet.createRow(0);
@@ -70,26 +73,13 @@ public class App {
 
        } catch (Exception e) {
            e.printStackTrace();
-       }
+       }*/
     }
     private static String delete(String text) {
-        boolean flag=false;
-        char[] chars=text.toCharArray();
-        int len=chars.length;
-        for(int i=0;i<len;i++){
-            char c=chars[i];
-            if(c=='<'){
-                flag=true;
-            }else if(c=='>'){
-                chars[i]='#';
-                flag=false;
-            }else if((int)c>=97&&(int)c<=112){
-                chars[i]='#';
-            }
-            if(flag){
-                chars[i]='#';
-            }
-        }
-        return String.valueOf(chars).replaceAll("[#,\",rt]", "").replace("\\", "");
+        String a="<abfgfdgfdfdfdgfdgdg1>";
+        String a2="<f123>";
+        a2=a.replaceAll("[^<>$,]", "");
+        System.out.println(a2);
+       return null;
     }
 }
