@@ -7,20 +7,29 @@ import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        String path="/Users/sesisoft/Desktop/txts";
        try {
-        BufferedReader txtFile = new BufferedReader(new FileReader("/Users/sesisoft/Desktop/txts/storydata_5064000.txt"));  
+        File dir = new File("/Users/sesisoft/Desktop/txts");
+        File files[] = dir.listFiles();
         List<String>texts=new ArrayList<>();
-        while (true) {
-            String text=txtFile.readLine();
-            if(text==null){
-                break;
-            }
-            if(text.contains(">")){
-                texts.add(delete(text));
+        for(File f:files){
+            String fileName=f.getName();
+            System.out.println(fileName);
+            BufferedReader txtFile = new BufferedReader(new FileReader(path+"/"+fileName));  
+            while (true) {
+                String text=txtFile.readLine();
+                if(text==null){
+                    break;
+                }
+                if(text.contains(">")){
+                    System.out.println(fileName+": "+delete(text));
+                    texts.add(delete(text));
+                }
             }
         }
-        System.out.println("abc");
-        System.out.println(texts.toString());
+       
+       
+        //System.out.println(texts.toString());
 
         File file = new File("/Users/sesisoft/Desktop/txts/1.xls");
        } catch (Exception e) {
